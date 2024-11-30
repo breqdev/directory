@@ -14,7 +14,7 @@ export type Generator = {
 
 export const generators: Generator[] = [
   {
-    url: "http://makea.fish/",
+    url: "https://fishmultiplex.lftq.in/makeafish",
     name: "make a fish",
     description:
       "a random fish generator that only works at 11:11 each morning and evening, in your local timezone.",
