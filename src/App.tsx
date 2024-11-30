@@ -75,7 +75,12 @@ function GeneratorView({
           </span>
         </div>
       </summary>
-      <p>{generator.description}</p>
+      <div className="flex flex-col gap-2">
+        <p>{generator.description}</p>
+        <p className="sm:hidden text-xs text-blue-600 underline">
+          <a href={generator.url}>{generator.url}</a>
+        </p>
+      </div>
     </details>
   );
 }
