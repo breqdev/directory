@@ -15,7 +15,7 @@ function timeUntilWallClock(time: ClockTime) {
     targetDate.setDate(targetDate.getDate() + 1);
   }
 
-  return (targetDate.getTime() - now.getTime()) / 1000;
+  return Math.floor((targetDate.getTime() - now.getTime()) / 1000);
 }
 
 function timeUntilGenerator(generator: Generator) {
@@ -127,7 +127,7 @@ export default function App() {
             ))}
         </div>
         {focusedGenerator && (
-          <div className="hidden sm:flex flex-grow rounded-lg border-2 border-black flex-col gap-2 pt-2">
+          <div className="hidden sm:flex flex-grow rounded-lg border-2 border-black flex-col gap-2 pt-2 overflow-clip">
             <h1 className="text-center text-4xl">{focusedGenerator.name}</h1>
             <iframe
               src={focusedGenerator.url}
