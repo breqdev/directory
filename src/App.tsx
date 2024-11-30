@@ -27,9 +27,11 @@ function timeUntilGenerator(generator: Generator) {
 function GeneratorView({
   generator,
   onFocus,
+  open,
 }: {
   generator: Generator;
   onFocus: () => void;
+  open: boolean;
 }) {
   const timeUntil = timeUntilGenerator(generator);
   const state: "later" | "soon" | "now" =
@@ -40,6 +42,7 @@ function GeneratorView({
 
   return (
     <details
+      name="generator"
       className={
         "border-2 rounded-lg px-3 py-2 " +
         (state === "now"
@@ -54,6 +57,7 @@ function GeneratorView({
           onFocus();
         }
       }}
+      open={open}
     >
       <summary className="text-2xl">
         <div className="inline-flex flex-col sm:flex-row justify-between w-[calc(100%-22px)]">
@@ -97,8 +101,10 @@ function useDate() {
 export default function App() {
   const now = useDate();
 
-  const [focusedGenerator, setFocusedGenerator] = useState<Generator | null>(
-    null
+  const [focusedGenerator, setFocusedGenerator] = useState<Generator>(
+    [...generators].sort(
+      (a, b) => timeUntilGenerator(a) - timeUntilGenerator(b)
+    )[0]
   );
 
   return (
@@ -122,20 +128,19 @@ export default function App() {
               <GeneratorView
                 generator={generator}
                 key={generator.name}
+                open={generator === focusedGenerator}
                 onFocus={() => setFocusedGenerator(generator)}
               />
             ))}
         </div>
-        {focusedGenerator && (
-          <div className="hidden sm:flex flex-grow rounded-lg border-2 border-black flex-col gap-2 pt-2 overflow-clip">
-            <h1 className="text-center text-4xl">{focusedGenerator.name}</h1>
-            <iframe
-              src={focusedGenerator.url}
-              className="w-full flex-grow"
-              title={focusedGenerator.name}
-            />
-          </div>
-        )}
+        <div className="hidden sm:flex flex-grow rounded-lg border-2 border-black flex-col gap-2 pt-2 overflow-clip">
+          <h1 className="text-center text-4xl">{focusedGenerator.name}</h1>
+          <iframe
+            src={focusedGenerator.url}
+            className="w-full flex-grow"
+            title={focusedGenerator.name}
+          />
+        </div>
       </div>
     </div>
   );
