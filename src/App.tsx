@@ -24,7 +24,13 @@ function timeUntilGenerator(generator: Generator) {
     .reduce((prev, curr) => Math.min(prev, curr));
 }
 
-function GeneratorView({ generator }: { generator: Generator }) {
+function GeneratorView({
+  generator,
+  onFocus,
+}: {
+  generator: Generator;
+  onFocus: () => void;
+}) {
   const timeUntil = timeUntilGenerator(generator);
   const state: "later" | "soon" | "now" =
     timeUntil < 0 ? "now" : timeUntil < 15 * 60 ? "soon" : "later";
@@ -42,6 +48,12 @@ function GeneratorView({ generator }: { generator: Generator }) {
           ? "border-amber-500"
           : "border-black")
       }
+      onToggle={(e) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if ((e.target as any).open) {
+          onFocus();
+        }
+      }}
     >
       <summary className="text-2xl">
         <div className="inline-flex flex-col sm:flex-row justify-between w-[calc(100%-22px)]">
@@ -80,25 +92,45 @@ function useDate() {
 export default function App() {
   const now = useDate();
 
+  const [focusedGenerator, setFocusedGenerator] = useState<Generator | null>(
+    null
+  );
+
   return (
-    <div className="flex flex-col p-4 gap-4 font-mono">
+    <div className="flex flex-col p-4 gap-4 font-mono h-full">
       <div>
         <h1 className="text-4xl">7:55 make a directory</h1>
       </div>
 
-      <div className="flex flex-col w-full gap-2 max-w-2xl">
-        <div className="flex flex-col sm:flex-row text-2xl justify-between pl-4 pr-[calc(0.75rem+2px)]">
-          <span>the time is...</span>
-          <span className="ml-auto sm:ml-0 mr-[9ch]">
-            {String(now.getHours()).padStart(2, "0")}:
-            {String(now.getMinutes()).padStart(2, "0")}
-          </span>
+      <div className="flex flex-row gap-4 flex-grow w-full">
+        <div className="flex flex-col w-full gap-2 max-w-2xl">
+          <div className="flex flex-col sm:flex-row text-2xl justify-between pl-4 pr-[calc(0.75rem+2px)]">
+            <span>the time is...</span>
+            <span className="ml-auto sm:ml-0 mr-[9ch]">
+              {String(now.getHours()).padStart(2, "0")}:
+              {String(now.getMinutes()).padStart(2, "0")}
+            </span>
+          </div>
+          {[...generators]
+            .sort((a, b) => timeUntilGenerator(a) - timeUntilGenerator(b))
+            .map((generator) => (
+              <GeneratorView
+                generator={generator}
+                key={generator.name}
+                onFocus={() => setFocusedGenerator(generator)}
+              />
+            ))}
         </div>
-        {generators
-          .sort((a, b) => timeUntilGenerator(a) - timeUntilGenerator(b))
-          .map((generator) => (
-            <GeneratorView generator={generator} key={generator.name} />
-          ))}
+        {focusedGenerator && (
+          <div className="hidden sm:flex flex-grow rounded-lg border-2 border-black flex-col gap-2 pt-2">
+            <h1 className="text-center text-4xl">{focusedGenerator.name}</h1>
+            <iframe
+              src={focusedGenerator.url}
+              className="w-full flex-grow"
+              title={focusedGenerator.name}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
