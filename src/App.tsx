@@ -44,9 +44,9 @@ function GeneratorView({ generator }: { generator: Generator }) {
       }
     >
       <summary className="text-2xl">
-        <div className="inline-flex justify-between w-[calc(100%-22px)]">
+        <div className="inline-flex flex-col sm:flex-row justify-between w-[calc(100%-22px)]">
           <h2 className="">{generator.name}</h2>
-          <span className="">
+          <span className="ml-auto sm:ml-0">
             {generator.canonicalTime}{" "}
             <span
               className={
@@ -87,9 +87,9 @@ export default function App() {
       </div>
 
       <div className="flex flex-col w-full gap-2 max-w-2xl">
-        <div className="flex flex-row text-2xl justify-between pl-4 pr-[calc(0.75rem+2px)]">
+        <div className="flex flex-col sm:flex-row text-2xl justify-between pl-4 pr-[calc(0.75rem+2px)]">
           <span>the time is...</span>
-          <span className="mr-[9ch]">
+          <span className="ml-auto sm:ml-0 mr-[9ch]">
             {String(now.getHours()).padStart(2, "0")}:
             {String(now.getMinutes()).padStart(2, "0")}
           </span>
