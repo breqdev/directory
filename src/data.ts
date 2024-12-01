@@ -97,7 +97,10 @@ export const generators: Generator[] = [
     url: "https://queercomputerclub.ca/projects/quecey-voip/",
     name: "dial-a-fish",
     description: "SSTV-encoded fish delivered over a telephone call",
-    authors: [{ name: "ari", url: "https://adryd.com/" }],
+    authors: [
+      { name: "ari", url: "https://adryd.com/" },
+      { name: "blackle", url: "https://www.blackle-mori.com/" },
+    ],
     protocol: "tel",
     clockTimes: Array.from({ length: 23 }, (_, i) => ({
       hours: i,
