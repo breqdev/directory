@@ -81,7 +81,7 @@ function GeneratorView({
       </summary>
       <div className="flex flex-col gap-2">
         <p>{generator.description}</p>
-        <p className="sm:hidden text-xs text-blue-600 underline">
+        <p className="lg:hidden text-xs text-blue-600 underline">
           <a href={generator.url}>{generator.url}</a>
         </p>
       </div>
@@ -100,11 +100,12 @@ function useDate() {
 
 export default function App() {
   const now = useDate();
+  const sortedGenerators = [...generators].sort(
+    (a, b) => timeUntilGenerator(a) - timeUntilGenerator(b)
+  );
 
   const [focusedGenerator, setFocusedGenerator] = useState<Generator>(
-    [...generators].sort(
-      (a, b) => timeUntilGenerator(a) - timeUntilGenerator(b)
-    )[0]
+    sortedGenerators[0]
   );
 
   return (
@@ -119,9 +120,8 @@ export default function App() {
             {String(now.getMinutes()).padStart(2, "0")}
           </span>
         </div>
-        {[...generators]
-          .sort((a, b) => timeUntilGenerator(a) - timeUntilGenerator(b))
-          .map((generator) => (
+        <div className="flex flex-col gap-2 sm:min-h-0 sm:overflow-y-auto">
+          {sortedGenerators.map((generator) => (
             <GeneratorView
               generator={generator}
               key={generator.name}
@@ -129,8 +129,9 @@ export default function App() {
               onFocus={() => setFocusedGenerator(generator)}
             />
           ))}
+        </div>
       </div>
-      <div className="hidden sm:flex flex-grow rounded-lg border-2 border-black flex-col gap-2 pt-2 overflow-clip">
+      <div className="hidden lg:flex flex-grow rounded-lg border-2 border-black flex-col gap-2 pt-2 overflow-clip">
         <h1 className="text-center text-4xl">{focusedGenerator.name}</h1>
         <iframe
           src={focusedGenerator.url}
