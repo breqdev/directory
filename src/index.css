@@ -5,6 +5,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: Daktronics9x15;
+  src: url("/daktronics-9x15.otf") format("opentype");
+}
+
 html,
 body,
 #root {

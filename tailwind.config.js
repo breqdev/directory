@@ -4,6 +4,7 @@ export default {
   theme: {
     fontFamily: {
       mono: ["JetBrains Mono", "monospace"],
+      display: ["Daktronics9x15", "monospace"],
     },
     extend: {},
   },
