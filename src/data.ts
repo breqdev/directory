@@ -99,7 +99,7 @@ export const generators: Generator[] = [
     description: "SSTV-encoded fish delivered over a telephone call",
     authors: [
       { name: "ari", url: "https://adryd.com/" },
-      { name: "blackle", url: "https://www.blackle-mori.com/" },
+      { name: "blackle", url: "https://suricrasia.online/" },
     ],
     protocol: "tel",
     clockTimes: Array.from({ length: 23 }, (_, i) => ({
