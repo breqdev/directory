@@ -108,4 +108,29 @@ export const generators: Generator[] = [
     })),
     canonicalTime: "**:11",
   },
+  {
+    url: "https://makea.cat/",
+    name: "make a cat",
+    description: "a random cat generator that only works at 2:22",
+    authors: [{ name: "golden", url: "https://goldenstack.net/" }],
+    protocol: "http",
+    clockTimes: [
+      { hours: 2, minutes: 22 },
+      { hours: 14, minutes: 22 },
+    ],
+    canonicalTime: "02:22",
+  },
+  // pending email to site admin!
+  // {
+  //   url: "https://www.makea.horse/",
+  //   name: "make a horse",
+  //   description: "a random horse generator that only works at 3:33",
+  //   authors: [],
+  //   protocol: "http",
+  //   clockTimes: [
+  //     { hours: 3, minutes: 33 },
+  //     { hours: 15, minutes: 33 },
+  //   ],
+  //   canonicalTime: "03:33",
+  // },
 ];
