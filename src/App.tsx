@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ClockTime, Generator, generators } from "./data";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 
 function timeUntilWallClock(time: ClockTime) {
   const now = new Date();
@@ -121,6 +123,306 @@ function useDate() {
   return date;
 }
 
+function Confetti() {
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
+  const [used, setUsed] = useState(false);
+
+  const now = useDate();
+
+  useEffect(() => {
+    if (
+      init &&
+      // (now.getHours() === 7 || now.getHours() === 19) &&
+      now.getMinutes() === 55 &&
+      !used
+    ) {
+      setUsed(true);
+    }
+  }, [init, now, used]);
+
+  const options = useMemo(
+    () => ({
+      fullScreen: {
+        zIndex: 1,
+      },
+      particles: {
+        color: {
+          value: ["#FFFFFF", "#FFd700"],
+        },
+        move: {
+          direction: "bottom" as const,
+          enable: true,
+          outModes: {
+            default: "out" as const,
+          },
+          size: true,
+          speed: {
+            min: 1,
+            max: 3,
+          },
+        },
+        number: {
+          value: 250,
+          density: {
+            enable: true,
+            area: 800,
+          },
+        },
+        opacity: {
+          value: 1,
+          animation: {
+            enable: false,
+            startValue: "max" as const,
+            destroy: "min" as const,
+            speed: 0.3,
+            sync: true,
+          },
+        },
+        rotate: {
+          value: {
+            min: 0,
+            max: 360,
+          },
+          direction: "random" as const,
+          move: true,
+          animation: {
+            enable: true,
+            speed: 60,
+          },
+        },
+        tilt: {
+          direction: "random" as const,
+          enable: true,
+          move: true,
+          value: {
+            min: 0,
+            max: 360,
+          },
+          animation: {
+            enable: true,
+            speed: 60,
+          },
+        },
+        shape: {
+          type: ["image" as const],
+          options: {
+            image: [
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_closed-4.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_explorer-5.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_open_cool-3.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_2k-4.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_network_conn-5.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_net_web-4.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_e-5.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/notepad-5.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/recycle_bin_full-4.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/network_internet_pcs_installer-4.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_network_conn_shortcut-4.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_channels-2.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_business_calendar-4.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_admin_tools-5.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_control_panel_cool-3.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+              {
+                src: "https://win98icons.alexmeub.com/icons/png/directory_fonts-0.png",
+                width: 48,
+                height: 48,
+                particles: {
+                  size: {
+                    value: 16,
+                  },
+                },
+              },
+            ],
+          },
+        },
+        size: {
+          value: {
+            min: 2,
+            max: 4,
+          },
+        },
+        roll: {
+          darken: {
+            enable: true,
+            value: 30,
+          },
+          enlighten: {
+            enable: true,
+            value: 30,
+          },
+          enable: true,
+          speed: {
+            min: 15,
+            max: 25,
+          },
+        },
+        wobble: {
+          distance: 30,
+          enable: true,
+          move: true,
+          speed: {
+            min: -15,
+            max: 15,
+          },
+        },
+      },
+    }),
+    []
+  );
+
+  const MemoParticles = useMemo(
+    () => <Particles id="tsparticles" options={options} />,
+    [options]
+  );
+
+  if (!used) return null;
+  return MemoParticles;
+}
+
 export default function App() {
   const now = useDate();
   const sortedGenerators = [...generators].sort(
@@ -220,7 +522,7 @@ export default function App() {
               .
             </p>
             <p>
-              font:{" "}
+              font used is{" "}
               {dark ? (
                 <a
                   href="https://fontstruct.com/fontstructions/show/2145556/daktronics-9x15"
@@ -236,6 +538,24 @@ export default function App() {
                   jetbrains mono
                 </a>
               )}
+              . win98 icons provided by{" "}
+              <a
+                href="https://win98icons.alexmeub.com/"
+                className={
+                  "underline " + (dark ? "text-blue-400" : "text-blue-600")
+                }
+              >
+                alexmeub
+              </a>{" "}
+              and rendered using{" "}
+              <a
+                href="https://particles.js.org/"
+                className={
+                  "underline " + (dark ? "text-blue-400" : "text-blue-600")
+                }
+              >
+                tsParticles
+              </a>
               .
             </p>
           </div>
@@ -254,6 +574,7 @@ export default function App() {
           title={focusedGenerator.name}
         />
       </div>
+      <Confetti />
     </div>
   );
 }
