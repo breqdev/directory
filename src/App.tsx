@@ -134,20 +134,12 @@ function Confetti() {
     });
   }, []);
 
-  const [used, setUsed] = useState(false);
-
   const now = useDate();
 
-  useEffect(() => {
-    if (
-      init &&
-      // (now.getHours() === 7 || now.getHours() === 19) &&
-      now.getMinutes() === 55 &&
-      !used
-    ) {
-      setUsed(true);
-    }
-  }, [init, now, used]);
+  const used =
+    init &&
+    (now.getHours() === 7 || now.getHours() === 19) &&
+    now.getMinutes() === 55;
 
   const options = useMemo(
     () => ({
