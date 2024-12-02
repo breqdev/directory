@@ -47,7 +47,7 @@ export const generators: Generator[] = [
   {
     url: "https://tris.fyi/dish",
     name: "bake a dish",
-    description: "a random allrecipies generator that only works as 22:22",
+    description: "randomly generate a baked dish from allrecipies at 22:22",
     authors: [{ name: "tris", url: "https://tris.fyi/" }],
     protocol: "http",
     clockTimes: [{ hours: 22, minutes: 22 }],
