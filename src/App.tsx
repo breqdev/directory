@@ -88,14 +88,18 @@ function GeneratorView({
           by{" "}
           {generator.authors.map((author, i) => (
             <>
-              <a
-                className={
-                  "underline " + (dark ? "text-blue-400" : "text-blue-600")
-                }
-                href={author.url}
-              >
-                {author.name}
-              </a>
+              {author.url ? (
+                <a
+                  className={
+                    "underline " + (dark ? "text-blue-400" : "text-blue-600")
+                  }
+                  href={author.url}
+                >
+                  {author.name}
+                </a>
+              ) : (
+                author.name
+              )}
               {i < generator.authors.length - 1 ? ", " : ""}
             </>
           ))}
@@ -465,32 +469,7 @@ export default function App() {
         <details className="border-2 rounded-lg px-3 py-2 border-gray-400 text-gray-400">
           <summary>settings / about / credits</summary>
           <div className={"text-sm " + (dark ? "text-white" : "text-gray-600")}>
-            <p>
-              this site collects "11:11 make a fish"-inspired websites with
-              their corresponding wall clock time. it was made with {"<3"} by{" "}
-              <a
-                href="https://breq.dev/"
-                className={
-                  "underline " + (dark ? "text-blue-400" : "text-blue-600")
-                }
-              >
-                brooke
-              </a>
-              .
-            </p>
-            <p>
-              also check out{" "}
-              <a
-                href="https://approaching.lftq.in/"
-                className={
-                  "underline " + (dark ? "text-blue-400" : "text-blue-600")
-                }
-              >
-                approaching.lftq.in
-              </a>{" "}
-              for a more minimalist concept.
-            </p>
-            <p>
+            <p className="my-1">
               toggle theme:{" "}
               <button
                 className={
@@ -514,13 +493,26 @@ export default function App() {
               .
             </p>
             <p>
+              this site collects "11:11 make a fish"-inspired websites with
+              their corresponding wall clock time. it was made with {"<3"} by{" "}
+              <a
+                href="https://breq.dev/"
+                className={
+                  "underline " + (dark ? "text-blue-400" : "text-blue-600")
+                }
+              >
+                brooke
+              </a>
+              .
+            </p>
+            <p>
               font used is{" "}
               {dark ? (
                 <a
                   href="https://fontstruct.com/fontstructions/show/2145556/daktronics-9x15"
                   className="text-blue-400 underline"
                 >
-                  daktronics 9x15 by bentheminer
+                  daktronics 9x15
                 </a>
               ) : (
                 <a
@@ -538,15 +530,48 @@ export default function App() {
                 }
               >
                 alexmeub
-              </a>{" "}
-              and rendered using{" "}
+              </a>
+              .
+            </p>
+            <p>
+              also check out{" "}
               <a
-                href="https://particles.js.org/"
+                href="https://approaching.lftq.in/"
                 className={
                   "underline " + (dark ? "text-blue-400" : "text-blue-600")
                 }
               >
-                tsParticles
+                approaching.lftq.in
+              </a>{" "}
+              for a more minimalist concept.
+            </p>
+            <p>
+              want to add something? this site is on{" "}
+              <a
+                href="https://github.com/breqdev/directory"
+                className={
+                  "underline " + (dark ? "text-blue-400" : "text-blue-600")
+                }
+              >
+                github
+              </a>
+              , submit an{" "}
+              <a
+                href="https://github.com/breqdev/directory/issues/new"
+                className={
+                  "underline " + (dark ? "text-blue-400" : "text-blue-600")
+                }
+              >
+                issue
+              </a>{" "}
+              or{" "}
+              <a
+                href="https://github.com/breqdev/directory/pulls/new"
+                className={
+                  "underline " + (dark ? "text-blue-400" : "text-blue-600")
+                }
+              >
+                pull
               </a>
               .
             </p>

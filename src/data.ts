@@ -5,7 +5,7 @@ export type ClockTime = {
 
 export type Author = {
   name: string;
-  url: string;
+  url?: string;
 };
 
 export type Generator = {
@@ -120,17 +120,28 @@ export const generators: Generator[] = [
     ],
     canonicalTime: "02:22",
   },
-  // pending email to site admin!
-  // {
-  //   url: "https://www.makea.horse/",
-  //   name: "make a horse",
-  //   description: "a random horse generator that only works at 3:33",
-  //   authors: [],
-  //   protocol: "http",
-  //   clockTimes: [
-  //     { hours: 3, minutes: 33 },
-  //     { hours: 15, minutes: 33 },
-  //   ],
-  //   canonicalTime: "03:33",
-  // },
+  {
+    url: "https://sequence.breq.dev/",
+    name: "make a sequence",
+    description: "a random OEIS sequence generator that works at 12:34",
+    authors: [{ name: "brooke", url: "https://breq.dev/" }],
+    protocol: "http",
+    clockTimes: [
+      { hours: 12, minutes: 34 },
+      { hours: 0, minutes: 34 },
+    ],
+    canonicalTime: "12:34",
+  },
+  {
+    url: "https://www.makea.horse/",
+    name: "make a horse",
+    description: "a random horse generator that only works at 3:33",
+    authors: [{ name: "makeahorse guy" }],
+    protocol: "http",
+    clockTimes: [
+      { hours: 3, minutes: 33 },
+      { hours: 15, minutes: 33 },
+    ],
+    canonicalTime: "03:33",
+  },
 ];
