@@ -34,7 +34,7 @@ export const generators: Generator[] = [
   },
   {
     url: "https://fish.lftq.in/",
-    name: "fish.lftq.in",
+    name: "spin a fish",
     description: "minecraft-inspired 3D fish",
     authors: [{ name: "luke", url: "https://lukefelixtaylor.com/" }],
     protocol: "http",
@@ -83,7 +83,7 @@ export const generators: Generator[] = [
   },
   {
     url: "https://makeabyte.lftq.in/",
-    name: "2:55 make a byte",
+    name: "make a byte",
     description: "random byte generator that shows the ASCII, bin, and hex",
     authors: [{ name: "luke", url: "https://lukefelixtaylor.com/" }],
     protocol: "http",
@@ -95,7 +95,7 @@ export const generators: Generator[] = [
   },
   {
     url: "https://queercomputerclub.ca/projects/quecey-voip/",
-    name: "dial-a-fish",
+    name: "dial a fish",
     description: "SSTV-encoded fish delivered over a telephone call",
     authors: [
       { name: "ari", url: "https://adryd.com/" },
@@ -143,5 +143,17 @@ export const generators: Generator[] = [
       { hours: 15, minutes: 33 },
     ],
     canonicalTime: "03:33",
+  },
+  {
+    url: "https://wiish.bramdj.dev/",
+    name: "make a wiish",
+    description: "nintendo wii inspired fish generator",
+    authors: [{ name: "bram", url: "https://bramdj.dev/" }],
+    protocol: "http",
+    clockTimes: [
+      { hours: 11, minutes: 11 },
+      { hours: 23, minutes: 11 },
+    ],
+    canonicalTime: "11:11",
   },
 ];
