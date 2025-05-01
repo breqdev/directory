@@ -10,6 +10,7 @@ export type Author = {
 
 export type Generator = {
   url: string;
+  iframeUrl?: string;
   name: string;
   description: string;
   authors: Author[];
@@ -20,7 +21,8 @@ export type Generator = {
 
 export const generators: Generator[] = [
   {
-    url: "https://fishmultiplex.lftq.in/makeafish",
+    url: "http://makea.fish",
+    iframeUrl: "https://fishmultiplex.lftq.in/makeafish",
     name: "make a fish",
     description:
       "a random fish generator that only works at 11:11 each morning and evening, in your local timezone.",

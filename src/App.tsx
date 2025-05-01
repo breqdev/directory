@@ -586,7 +586,7 @@ export default function App() {
       >
         <h1 className="text-center text-4xl">{focusedGenerator.name}</h1>
         <iframe
-          src={focusedGenerator.url}
+          src={focusedGenerator.iframeUrl ?? focusedGenerator.url}
           className="w-full flex-grow bg-white"
           title={focusedGenerator.name}
         />
